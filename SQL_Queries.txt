@@ -1,0 +1,72 @@
+--Emily Torres
+--Michael Siff
+--Databases
+--April 19, 2023
+
+--Spotify Database SQL Queries
+
+--1) Produce a list of every song I listened to in the past year.
+
+SELECT date(datetime), artist_name, track_name, ms_played
+FROM Streaming_History
+ORDER BY date(datetime);
+
+--2) Produce a list of my TOP 10 most popular artists.
+
+SELECT artist_name, COUNT(*) as n
+FROM Streaming_History
+GROUP BY artist_name
+ORDER BY n DESC
+LIMIT 10;
+
+--3) Produce a list of my TOP 10 most popular songs.
+
+SELECT track_name, COUNT(*) as n
+FROM Streaming_History
+GROUP BY track_name
+ORDER BY n DESC
+LIMIT 10;
+
+--4) Find a song's particular feature/analytic (ex: danceability)
+
+SELECT DISTINCT track_name, artist_name, danceability
+FROM Track_Features
+WHERE track_name = 'Hu Tao Rap';
+
+--5) Find how many songs I listened to from a particular album (ex: Hadestown)
+
+SELECT DISTINCT album_name, track_name
+FROM Track_Info
+WHERE album_name LIKE '%Hadestown%';
+
+--6) What songs did I listen to between (start date) and (end date)? (EX: APRIL 2022)
+
+SELECT DISTINCT artist_name, track_name
+FROM Streaming_History 
+WHERE date(datetime) >= '2022-04-01' AND date(datetime) <= '2022-04-30';
+
+--7) Produce a list of the audio analytic (ex: instrumentalness).
+
+SELECT DISTINCT track_name, artist_name, instrumentalness
+FROM Track_Features
+ORDER BY instrumentalness DESC;
+
+--8) Find a song's ID (ex: My Ordinary Life).
+
+SELECT DISTINCT id
+FROM Track_Info
+WHERE track_name = 'My Ordinary Life';
+
+--9) Find the artist of a track.
+
+SELECT DISTINCT artist_name
+FROM Track_Info
+WHERE track_name = 'OPEN WOUNDS';
+
+--10) Create a dance party playlist from my streaming history!
+
+SELECT DISTINCT track_name, artist_name
+FROM Track_Features
+ORDER BY danceability DESC
+LIMIT 50;
+
