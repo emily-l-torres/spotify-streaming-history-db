@@ -7,7 +7,7 @@ Spotify Streaming History Database (Applications of Python + SQL)
 *******************
 TO RUN THE PROGRAM:
 
-- Run 'spotify_main_menu.py' file;
+- Run 'spotify_main_menu.py' file
 - Type 'spot_repl()' and enter
 - Choose from the following prompts (some require inputs and some don't)
 - There is no need to use quotes when typing in an input.
